@@ -31,23 +31,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  13 .comment      00000043  00000000  00000000  00020040  2**0
                   CONTENTS, READONLY
- 14 .debug_info   00019453  00000000  00000000  00020083  2**0
+ 14 .debug_info   000193d1  00000000  00000000  00020083  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 000039db  00000000  00000000  000394d6  2**0
+ 15 .debug_abbrev 000039ec  00000000  00000000  00039454  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_aranges 00001598  00000000  00000000  0003ceb8  2**3
+ 16 .debug_aranges 00001590  00000000  00000000  0003ce40  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 00001092  00000000  00000000  0003e450  2**0
+ 17 .debug_rnglists 0000108b  00000000  00000000  0003e3d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00026425  00000000  00000000  0003f4e2  2**0
+ 18 .debug_macro  00026425  00000000  00000000  0003f45b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_line   00019766  00000000  00000000  00065907  2**0
+ 19 .debug_line   00019717  00000000  00000000  00065880  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_str    000f117a  00000000  00000000  0007f06d  2**0
+ 20 .debug_str    000f115f  00000000  00000000  0007ef97  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_frame  00005b24  00000000  00000000  001701e8  2**2
+ 21 .debug_frame  00005b00  00000000  00000000  001700f8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 00000056  00000000  00000000  00175d0c  2**0
+ 22 .debug_line_str 00000056  00000000  00000000  00175bf8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -12902,7 +12902,6 @@ int main(void)
  8004f84:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  8004f88:	4803      	ldr	r0, [pc, #12]	; (8004f98 <main+0x28>)
  8004f8a:	f7fb feb3 	bl	8000cf4 <HAL_GPIO_TogglePin>
-		// TODO - need to figure out how to configure timer, LED blinks with bp
 		HAL_Delay(500);
  8004f8e:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  8004f92:	f7fb faed 	bl	8000570 <HAL_Delay>
@@ -12921,9 +12920,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  8004f9e:	b082      	sub	sp, #8
  8004fa0:	af00      	add	r7, sp, #0
  8004fa2:	6078      	str	r0, [r7, #4]
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {
  8004fa4:	687b      	ldr	r3, [r7, #4]
  8004fa6:	681b      	ldr	r3, [r3, #0]
@@ -12933,9 +12929,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
  8004fae:	f7fb fabf 	bl	8000530 <HAL_IncTick>
   }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
 }
  8004fb2:	bf00      	nop
  8004fb4:	3708      	adds	r7, #8
@@ -13032,10 +13025,7 @@ void SystemClock_Config(void)
 	...
 
 08005034 <GPIO_Init>:
-  {
-    Error_Handler();
-  }
-}
+
 
 void GPIO_Init(void) {
  8005034:	b580      	push	{r7, lr}
